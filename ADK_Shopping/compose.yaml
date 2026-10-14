@@ -1,0 +1,14 @@
+name: adk-shopping
+services:
+  redis:
+    image: redis:7.4-alpine
+    ports:
+      - "127.0.0.1:6381:6379"
+    command: ["redis-server", "--save", "", "--appendonly", "no"]
+    labels:
+      com.adk-shopping.owner: adk-shopping
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
