@@ -1,5 +1,19 @@
 # Recorded local verification
 
+## Hosted verification - 20 October 2026
+
+Production URL: **https://adk-shopping-assistant.vercel.app**. Vercel's Python 3.12/FastAPI deployment was Ready, with a dedicated Upstash Redis Free database and automatic paid upgrades disabled. The production OpenAI and Redis credentials were configured as server-side secrets with the owner's explicit approval.
+
+The automated suite now passes **32 tests**, including the original 26 checks and six hosted-app checks. The hosted checks cover session restoration between application instances, visitor isolation, cross-origin rejection, input limits, request quotas, conversation locks/reset, and proxy-header handling.
+
+The real seven-turn cloud verification passed homepage/assets/health/readiness, all four agent handoffs, two Pixel 9 units totaling INR 140,000, a streamed order summary with saved shipping details, session recovery using a new HTTP client, isolation of another visitor, and origin/input guards. The public deployment does not expose `/dev-ui/` or the original developer session APIs.
+
+Hosted conversations expire 24 hours after the last completed turn. Model use remains subject to OpenAI account quota, per-IP limits, the shared model-call limit, and a public cap of 300 chat submissions per 24-hour counter window. The application remains a demo without payments, real order placement, inventory, or tracking.
+
+Reproduce the live check with `ADK_Shopping/scripts/verify_cloud.py`. Synthetic transcripts are kept under ignored `ADK_Shopping/output/cloud-verification.json` on the verification machine.
+
+## Original local verification
+
 Date: **14 October 2026**. Environment: Windows, Python 3.12, OpenAI `gpt-4o-mini`, and a dedicated Redis 7.4 Docker container on loopback port 6381.
 
 These results describe the local development build tested before publication. They are not production load-test results or a guarantee of future provider availability. Live requests used synthetic customer details; credentials and session databases are excluded from the repository.

@@ -1,8 +1,33 @@
 # ADK Shopping Assistant
 
+**Live demo: [adk-shopping-assistant.vercel.app](https://adk-shopping-assistant.vercel.app)**
+
 A conversational shopping demo built with **Google Agent Development Kit (ADK)**, **OpenAI GPT-4o mini**, and **Redis**. Four specialized agents guide a shopper from profile collection to a validated cart, shipping details, and an order summary, sharing state throughout the conversation.
 
 The project includes an ADK browser interface, a FastAPI server, Redis rate limiting, persistent local sessions, and automated tests.
+
+## Hosted application
+
+The Vercel deployment uses a dedicated public chat interface, preserving the same four agents and catalog. The ADK developer console remains available only through the original local server. Hosted conversations use opaque, HTTP-only browser cookies and persist in a dedicated Redis database for 24 hours after the last completed chat turn. A fresh chat receives a new identity; another visitor cannot list or choose someone else's session.
+
+The root `app.py` exports `ADK_Shopping/cloud_server.py` for Vercel's Python/FastAPI runtime. The original `ADK_Shopping/server.py` and `start.ps1` continue to provide the local ADK development UI and SQLite sessions. No running desktop or local Docker instance is needed by the hosted app.
+
+For Vercel, import this repository at its root, select FastAPI, and configure server-side production variables `OPENAI_API_KEY`, `LLM_MODEL`, `REDIS_URL`, and `RATE_LIMIT_ENABLED`. Use a hosted TLS Redis URL (`rediss://...`), not the local Docker address. `PUBLIC_DAILY_CHAT_LIMIT` defaults to 300 submissions across visitors per rolling 24-hour counter window; the original per-IP request and shared model-call limits also apply. The deployment's credentials are not included in this repository.
+
+Public endpoints are `/`, `/assets/*`, `/api/session`, `/api/chat`, `/api/reset`, `/health`, and `/ready`. The hosted application does not expose the developer console or ADK session-management APIs. Chat replies use server-sent events, same-origin request checks, per-conversation locks, and plain-text rendering of model output.
+
+To run the hosted interface locally using your configured Redis connection:
+
+```powershell
+cd ADK_Shopping
+.\.venv\Scripts\python.exe -X utf8 -m uvicorn cloud_server:app --host 127.0.0.1 --port 8002 --no-proxy-headers
+```
+
+To verify a deployment with synthetic data and real model calls:
+
+```powershell
+.\.venv\Scripts\python.exe -X utf8 -u scripts\verify_cloud.py https://adk-shopping-assistant.vercel.app
+```
 
 ## What it does
 

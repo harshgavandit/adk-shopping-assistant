@@ -17,3 +17,10 @@ htmlcov/
 *.log
 .idea/
 .vscode/
+
+.vercel
+.env*
+.agents/skills/
+skills-lock.json
+!.env.example
+!**/.env.example

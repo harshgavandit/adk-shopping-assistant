@@ -1,0 +1,10 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "fastapi",
+  "functions": {
+    "app.py": {
+      "maxDuration": 120,
+      "excludeFiles": "{__MACOSX/**,ADK_Shopping/.venv/**,ADK_Shopping/.adk/**,ADK_Shopping/output/**,ADK_Shopping/tests/**,ADK_Shopping/DOCUMENTATION.pdf,docs/**,**/__pycache__/**,**/.pytest_cache/**}"
+    }
+  }
+}

@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Explore a demo electronics catalog with a conversational shopping assistant. Browse products, build a cart, and preview your order.">
+  <title>ADK Shopping — Your conversational store</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/assets/style.css">
+  <script src="/assets/app.js" defer></script>
+</head>
+<body>
+  <header class="header"><a class="brand" href="/" aria-label="ADK Shopping home"><span class="brand-icon" aria-hidden="true">S</span><span>ADK Shopping<span class="brand-caption">A conversational store</span></span></a><div class="header-right"><span class="demo-badge">Interactive demo</span><a href="https://github.com/harshgavandit/adk-shopping-assistant" target="_blank" rel="noreferrer">View source <span aria-hidden="true">↗</span></a></div></header>
+  <main>
+    <section class="intro"><div><p class="eyebrow">BROWSE. CHOOSE. CHECK OUT.</p><h1>A little conversation.<br>A cart that’s all yours.</h1><p class="intro-text">Find your next phone, laptop, or pair of headphones.<br class="desktop"> Your assistant takes it from there.</p></div><div class="intro-note"><span class="note-symbol" aria-hidden="true">✧</span><p>Four specialists.<br><strong>One seamless conversation.</strong></p></div></section>
+    <div class="workspace">
+      <section class="chat-panel" aria-label="Shopping conversation"><div class="panel-heading"><div class="assistant-mark" aria-hidden="true">✦</div><div><h2>Your shopping assistant</h2><p id="connection"><span class="status-dot"></span>Connecting…</p></div><button class="text-button" id="new-chat" type="button">New chat <span aria-hidden="true">↻</span></button></div>
+        <ol class="steps" aria-label="Shopping progress"><li class="active" data-step="Welcome">01 <span>Welcome</span></li><li data-step="Catalog">02 <span>Catalog</span></li><li data-step="Checkout">03 <span>Checkout</span></li><li data-step="Summary">04 <span>Summary</span></li></ol>
+        <div id="messages" class="messages" role="log" aria-label="Messages" aria-live="polite" aria-relevant="additions text"></div>
+        <div id="error" class="error" role="alert" hidden></div>
+        <form id="chat-form" class="composer"><label class="sr-only" for="message">Your message</label><textarea id="message" name="message" rows="2" maxlength="1500" placeholder="Tell me what you’re looking for…" required></textarea><button id="send" type="submit" aria-label="Send message"><span aria-hidden="true">↑</span></button></form><p class="input-note">Enter to send · Shift + Enter for a new line</p>
+      </section>
+      <aside class="sidebar"><section class="side-card"><p class="eyebrow">THE DEMO COLLECTION</p><h2>A few good choices.</h2><p class="muted">Three categories. A conversation away.</p><button class="category" data-message="I would like to browse smartphones."><span class="category-icon" aria-hidden="true">▯</span><span><strong>Smartphones</strong><small>Pixel, iPhone & Galaxy</small></span><span class="arrow" aria-hidden="true">↗</span></button><button class="category" data-message="I would like to browse laptops."><span class="category-icon laptop" aria-hidden="true">▱</span><span><strong>Laptops</strong><small>MacBook & Dell</small></span><span class="arrow" aria-hidden="true">↗</span></button><button class="category" data-message="I would like to browse headphones."><span class="category-icon" aria-hidden="true">∩</span><span><strong>Headphones</strong><small>Sony & Boat</small></span><span class="arrow" aria-hidden="true">↗</span></button></section>
+      <section class="side-card cart-card"><div class="cart-heading"><h2>Your cart</h2><span id="cart-count">0 items</span></div><div id="cart"><div class="empty-cart"><span aria-hidden="true">⌑</span><p>A good find belongs here.</p><small>Choose a product with your assistant<br>to start your demo cart.</small></div></div></section>
+      <section class="demo-note"><span aria-hidden="true">ⓘ</span><div><strong>Just exploring? Perfect.</strong><p>Use made-up contact and address details. Products and prices are illustrative. No payment is collected and no real order is placed.</p><button id="demo-profile" class="text-button" type="button">Try with demo details →</button></div></section></aside>
+    </div>
+    <footer><span>Built with Google ADK & OpenAI</span><span>Your conversation is private to this browser and expires after 24 hours of inactivity.</span></footer>
+  </main>
+</body>
+</html>
